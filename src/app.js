@@ -28,6 +28,8 @@ app.use(myConnection(mysql, {
 
 }, 'single'));
 
+app.use(express.urlencoded({extended:false}));
+
 //routes
 app.use('/', customerRoutes);
 
