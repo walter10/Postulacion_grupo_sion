@@ -1,10 +1,14 @@
 const express = require('express');
 const path = require('path');
-const app = express();
 const morgan = require('morgan');
 const mysql = require('mysql2');
 const myConnection = require('express-myconnection'); 
 
+const app = express();
+
+//importing routes
+
+const customerRoutes = require('./routes/customer');
 
 //settings 
 
@@ -23,6 +27,13 @@ app.use(myConnection(mysql, {
     database:"projectSion",
 
 }, 'single'));
+
+//routes
+app.use('/', customerRoutes);
+
+//static files
+app.use(express.static(path.join(__dirname,'public')));
+
  
 
 
